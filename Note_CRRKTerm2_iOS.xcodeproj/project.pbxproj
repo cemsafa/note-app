@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B1E697FD26EABDDC0039F77D /* Note_CRRTerm2_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Note_CRRTerm2_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1E697FD26EABDDC0039F77D /* Note_CRRKTerm2_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Note_CRRKTerm2_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E6980026EABDDC0039F77D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1E6980226EABDDC0039F77D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B1E6980426EABDDC0039F77D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,7 +40,7 @@
 		B1E697F426EABDDC0039F77D = {
 			isa = PBXGroup;
 			children = (
-				B1E697FF26EABDDC0039F77D /* Note_CRRTerm2_iOS */,
+				B1E697FF26EABDDC0039F77D /* Note_CRRKTerm2_iOS */,
 				B1E697FE26EABDDC0039F77D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,12 +48,12 @@
 		B1E697FE26EABDDC0039F77D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B1E697FD26EABDDC0039F77D /* Note_CRRTerm2_iOS.app */,
+				B1E697FD26EABDDC0039F77D /* Note_CRRKTerm2_iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B1E697FF26EABDDC0039F77D /* Note_CRRTerm2_iOS */ = {
+		B1E697FF26EABDDC0039F77D /* Note_CRRKTerm2_iOS */ = {
 			isa = PBXGroup;
 			children = (
 				B1E6980026EABDDC0039F77D /* AppDelegate.swift */,
@@ -64,15 +64,15 @@
 				B1E6980B26EABDDD0039F77D /* LaunchScreen.storyboard */,
 				B1E6980E26EABDDD0039F77D /* Info.plist */,
 			);
-			path = Note_CRRTerm2_iOS;
+			path = Note_CRRKTerm2_iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B1E697FC26EABDDC0039F77D /* Note_CRRTerm2_iOS */ = {
+		B1E697FC26EABDDC0039F77D /* Note_CRRKTerm2_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B1E6981126EABDDD0039F77D /* Build configuration list for PBXNativeTarget "Note_CRRTerm2_iOS" */;
+			buildConfigurationList = B1E6981126EABDDD0039F77D /* Build configuration list for PBXNativeTarget "Note_CRRKTerm2_iOS" */;
 			buildPhases = (
 				B1E697F926EABDDC0039F77D /* Sources */,
 				B1E697FA26EABDDC0039F77D /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = Note_CRRTerm2_iOS;
+			name = Note_CRRKTerm2_iOS;
 			productName = Note_CRRTerm2_iOS;
-			productReference = B1E697FD26EABDDC0039F77D /* Note_CRRTerm2_iOS.app */;
+			productReference = B1E697FD26EABDDC0039F77D /* Note_CRRKTerm2_iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -101,7 +101,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B1E697F826EABDDC0039F77D /* Build configuration list for PBXProject "Note_CRRTerm2_iOS" */;
+			buildConfigurationList = B1E697F826EABDDC0039F77D /* Build configuration list for PBXProject "Note_CRRKTerm2_iOS" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -114,7 +114,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B1E697FC26EABDDC0039F77D /* Note_CRRTerm2_iOS */,
+				B1E697FC26EABDDC0039F77D /* Note_CRRKTerm2_iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -288,12 +288,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RTKTHM26K9;
-				INFOPLIST_FILE = Note_CRRTerm2_iOS/Info.plist;
+				INFOPLIST_FILE = Note_CRRKTerm2_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cemsafa.Note-CRRTerm2-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cemsafa.Note-CRRKTerm2-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -307,12 +307,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RTKTHM26K9;
-				INFOPLIST_FILE = Note_CRRTerm2_iOS/Info.plist;
+				INFOPLIST_FILE = Note_CRRKTerm2_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cemsafa.Note-CRRTerm2-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cemsafa.Note-CRRKTerm2-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -322,7 +322,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B1E697F826EABDDC0039F77D /* Build configuration list for PBXProject "Note_CRRTerm2_iOS" */ = {
+		B1E697F826EABDDC0039F77D /* Build configuration list for PBXProject "Note_CRRKTerm2_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1E6980F26EABDDD0039F77D /* Debug */,
@@ -331,7 +331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B1E6981126EABDDD0039F77D /* Build configuration list for PBXNativeTarget "Note_CRRTerm2_iOS" */ = {
+		B1E6981126EABDDD0039F77D /* Build configuration list for PBXNativeTarget "Note_CRRKTerm2_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1E6981226EABDDD0039F77D /* Debug */,
