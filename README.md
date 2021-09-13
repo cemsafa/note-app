@@ -1,5 +1,5 @@
-# Note_CRRTerm2_iOS Project
----
+# Note_CRRKTerm2_iOS Project
+
 A native application for iPhone or iPad (or Universal) that allows the user to take and organize notes.  
 
 The application should have the following features:  
@@ -15,6 +15,12 @@ The application should have the following features:
 - [ ] Users should be able to record audio and associate the audio file with the note.
 - [ ] Users should be able as well to change the subject/category of a note i.e. move a note from one
 subject/category to another.
+---
+**Group Members:**  
+- [Renu](https://github.com/Renu11111)
+- [Ritika](https://github.com/RainaRiti)
+- [Kristina](https://github.com/kristina807287)
+- [Cem](https://github.com/cemsafa)
 ---
 ## Following tutorials can help:
 [How to record audio using AVAudioRecorder](https://www.hackingwithswift.com/example-code/media/how-to-record-audio-using-avaudiorecorder)  
