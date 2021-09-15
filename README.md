@@ -6,7 +6,7 @@ The application should have the following features:
 
 - [ ] Users can organize the notes by subject (category).
 - [ ] The notes should be stored with the time and date of creation.
-- [ ] Data should be persistent.
+- [x] Data should be persistent.
 - [ ] Users should be able to search for specific note by title or by keyword that may be contained in a note.
 - [ ] Users should be allowed to sort notes by title or by date/time that were created.
 - [ ] Users should be allowed to take picture (or use a picture that was previously taken) and store it as part of a note.
@@ -25,3 +25,4 @@ subject/category to another.
 ## Following tutorials can help:
 [How to record audio using AVAudioRecorder](https://www.hackingwithswift.com/example-code/media/how-to-record-audio-using-avaudiorecorder)  
 [How to take a photo using the camera and UIImagePickerController](https://www.hackingwithswift.com/example-code/uikit/how-to-take-a-photo-using-the-camera-and-uiimagepickercontroller)
+
