@@ -10,7 +10,7 @@
         <!--Folders-->
         <scene sceneID="QbR-EF-pJh">
             <objects>
-                <tableViewController id="qOH-WQ-PYY" customClass="FolderTableViewController" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="qOH-WQ-PYY" customClass="FolderTableVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="G7r-tT-xlJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -65,7 +65,7 @@
         <!--Notes-->
         <scene sceneID="g6X-E6-nhD">
             <objects>
-                <tableViewController id="G83-hb-ru8" customClass="NoteTableViewController" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="G83-hb-ru8" customClass="NoteTableVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Vzd-GU-Yx5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,10 +115,10 @@
             </objects>
             <point key="canvasLocation" x="2635" y="138"/>
         </scene>
-        <!--Note View Controller-->
+        <!--NoteVC-->
         <scene sceneID="qXC-aM-Twm">
             <objects>
-                <viewController id="DuQ-ch-4hQ" customClass="NoteViewController" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DuQ-ch-4hQ" customClass="NoteVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZB4-O1-Iw9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,10 +147,10 @@
             </objects>
             <point key="canvasLocation" x="3365" y="138"/>
         </scene>
-        <!--Move To View Controller-->
+        <!--Move To Folder TableVC-->
         <scene sceneID="zLI-wm-xEN">
             <objects>
-                <viewController id="PY1-Lf-TOS" customClass="MoveToViewController" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PY1-Lf-TOS" customClass="MoveToFolderTableVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XB2-VF-tVu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
