@@ -11,7 +11,7 @@
         <!--Folders-->
         <scene sceneID="i3Z-Hl-rZb">
             <objects>
-                <tableViewController id="eAV-Dg-QqS" sceneMemberID="viewController">
+                <tableViewController id="eAV-Dg-QqS" customClass="FolderTableVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zG1-2n-GAA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="792.75362318840587" y="51.5625"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Note TableVC-->
         <scene sceneID="b1Z-as-8TK">
             <objects>
-                <tableViewController id="hAE-4j-z1h" sceneMemberID="viewController">
+                <tableViewController id="hAE-4j-z1h" customClass="NoteTableVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0Le-va-pGL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
