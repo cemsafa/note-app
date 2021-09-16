@@ -8,6 +8,8 @@
 import UIKit
 
 class FolderTableVC: UITableViewController {
+    
+    var folders: [Folder] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,23 +25,20 @@ class FolderTableVC: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return folders.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "folder-cell", for: indexPath)
+        cell.textLabel?.text = folders[indexPath.row].name
+        cell.detailTextLabel?.text = String(folders[indexPath.row].notes?.count ?? 0)
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -76,14 +75,12 @@ class FolderTableVC: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let vc = segue.destination as? NoteTableVC else { return }
+        present(vc, animated: true)
     }
-    */
 
 }
