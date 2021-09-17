@@ -52,7 +52,11 @@
                     </tableView>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="fXY-pl-yhk"/>
-                        <barButtonItem image="folder.badge.plus" catalog="system" id="E4d-y8-pot"/>
+                        <barButtonItem image="folder.badge.plus" catalog="system" id="E4d-y8-pot">
+                            <connections>
+                                <action selector="addFolderBtnPressed:" destination="eAV-Dg-QqS" id="Xe9-N9-oYc"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Folders" id="9ha-Ca-ZNm"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -88,10 +92,15 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem enabled="NO" image="trash" catalog="system" id="FBZ-GJ-9ws"/>
+                        <barButtonItem enabled="NO" image="trash" catalog="system" id="FBZ-GJ-9ws">
+                            <connections>
+                                <action selector="deleteBtnPressed:" destination="hAE-4j-z1h" id="HJj-MB-4RV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lRb-2e-uIx"/>
                         <barButtonItem enabled="NO" image="tray.and.arrow.down" catalog="system" id="A3w-Kj-qa3">
                             <connections>
+                                <action selector="moveBtnPressed:" destination="hAE-4j-z1h" id="bCX-Ry-TSF"/>
                                 <segue destination="SDI-1P-UHJ" kind="show" id="51g-ac-ls5"/>
                             </connections>
                         </barButtonItem>
@@ -103,9 +112,17 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Notes" id="Vdk-mx-2rF" userLabel="Notes">
-                        <barButtonItem key="rightBarButtonItem" image="ellipsis" catalog="system" id="H3O-9X-3B3"/>
+                        <barButtonItem key="rightBarButtonItem" image="ellipsis" catalog="system" id="H3O-9X-3B3">
+                            <connections>
+                                <action selector="editBtnPressed:" destination="hAE-4j-z1h" id="96R-Gm-hYc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="deleteBtn" destination="FBZ-GJ-9ws" id="kuJ-1D-Um0"/>
+                        <outlet property="moveBtn" destination="A3w-Kj-qa3" id="N27-aL-chz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9Q-eW-zKK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -114,7 +131,7 @@
         <!--Move to folder ...-->
         <scene sceneID="5jh-eH-Dfa">
             <objects>
-                <tableViewController id="SDI-1P-UHJ" sceneMemberID="viewController">
+                <tableViewController id="SDI-1P-UHJ" customClass="MoveToFolderTableVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tpZ-J3-GCn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -145,17 +162,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Move to folder ..." id="HxT-i1-291">
                         <barButtonItem key="leftBarButtonItem" enabled="NO" id="feH-FZ-hpi"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="xEJ-Tr-k8m"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="xEJ-Tr-k8m">
+                            <connections>
+                                <action selector="cancelBtnPressed:" destination="SDI-1P-UHJ" id="9yM-8i-5zV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FlZ-12-jwk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1600" y="775"/>
         </scene>
-        <!--View Controller-->
+        <!--NoteVC-->
         <scene sceneID="khV-c8-0fa">
             <objects>
-                <viewController id="xJ8-IV-ZwH" sceneMemberID="viewController">
+                <viewController id="xJ8-IV-ZwH" customClass="NoteVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9tL-3U-uUb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -178,6 +199,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aop-XL-LML"/>
+                    <connections>
+                        <outlet property="noteTV" destination="Mcv-pN-aQH" id="Yj9-Lb-f7m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXN-RJ-Zbo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -186,13 +210,17 @@
         <!--Navigation Controller-->
         <scene sceneID="imA-ua-a87">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JTP-NV-vCy" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="JTP-NV-vCy" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jMY-i2-eUg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mcf-ai-zzm">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="eAV-Dg-QqS" kind="relationship" relationship="rootViewController" id="eAa-e7-529"/>
                     </connections>

@@ -76,7 +76,6 @@ class MoveToFolderTableVC: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -84,6 +83,10 @@ class MoveToFolderTableVC: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
-
+    
+    // MARK: - IBAction
+    
+    @IBAction func cancelBtnPressed(_ sender: UIBarButtonItem) {
+    }
+    
 }
