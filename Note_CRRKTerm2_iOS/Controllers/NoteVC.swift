@@ -9,6 +9,8 @@ import UIKit
 
 class NoteVC: UIViewController {
 
+    @IBOutlet weak var noteTV: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

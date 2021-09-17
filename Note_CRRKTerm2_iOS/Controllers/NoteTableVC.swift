@@ -9,6 +9,11 @@ import UIKit
 
 class NoteTableVC: UITableViewController {
 
+    @IBOutlet weak var deleteBtn: UIBarButtonItem!
+    @IBOutlet weak var moveBtn: UIBarButtonItem!
+    
+    var selectedFolder: Folder?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -76,7 +81,6 @@ class NoteTableVC: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -84,6 +88,15 @@ class NoteTableVC: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
 
+    // MARK: - IBAction
+    
+    @IBAction func deleteBtnPressed(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func moveBtnPressed(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func editBtnPressed(_ sender: UIBarButtonItem) {
+    }
 }

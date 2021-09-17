@@ -45,15 +45,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B196F44826F24DF200BCF94B /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				B1E6980626EABDDC0039F77D /* Main.storyboard */,
-				B1E6980B26EABDDD0039F77D /* LaunchScreen.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
 		B196F44926F24DFC00BCF94B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +78,8 @@
 		B196F44C26F24F7400BCF94B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1E6980626EABDDC0039F77D /* Main.storyboard */,
+				B1E6980B26EABDDD0039F77D /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -110,11 +103,10 @@
 		B1E697FF26EABDDC0039F77D /* Note_CRRKTerm2_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				B196F44C26F24F7400BCF94B /* Views */,
 				B196F44A26F24E0900BCF94B /* Models */,
-				B196F44B26F24E1C00BCF94B /* Supporting Files */,
 				B196F44926F24DFC00BCF94B /* Controllers */,
-				B196F44826F24DF200BCF94B /* Storyboards */,
+				B196F44C26F24F7400BCF94B /* Views */,
+				B196F44B26F24E1C00BCF94B /* Supporting Files */,
 			);
 			path = Note_CRRKTerm2_iOS;
 			sourceTree = "<group>";
