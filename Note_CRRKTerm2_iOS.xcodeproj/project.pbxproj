@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B16AA51726F5386B009CC990 /* MoveToFolderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16AA51626F5386B009CC990 /* MoveToFolderVC.swift */; };
 		B196F44F26F2528F00BCF94B /* NoteModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B196F44D26F2528F00BCF94B /* NoteModel.xcdatamodeld */; };
 		B196F45126F2653300BCF94B /* FolderTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B196F45026F2653300BCF94B /* FolderTableVC.swift */; };
 		B196F45526F2657A00BCF94B /* NoteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B196F45426F2657A00BCF94B /* NoteTableVC.swift */; };
-		B196F45726F2658C00BCF94B /* MoveToFolderTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B196F45626F2658C00BCF94B /* MoveToFolderTableVC.swift */; };
 		B196F45926F265A400BCF94B /* NoteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B196F45826F265A400BCF94B /* NoteVC.swift */; };
 		B1E6980126EABDDC0039F77D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6980026EABDDC0039F77D /* AppDelegate.swift */; };
 		B1E6980326EABDDC0039F77D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E6980226EABDDC0039F77D /* SceneDelegate.swift */; };
@@ -20,10 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B16AA51626F5386B009CC990 /* MoveToFolderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToFolderVC.swift; sourceTree = "<group>"; };
 		B196F44E26F2528F00BCF94B /* NoteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteModel.xcdatamodel; sourceTree = "<group>"; };
 		B196F45026F2653300BCF94B /* FolderTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTableVC.swift; sourceTree = "<group>"; };
 		B196F45426F2657A00BCF94B /* NoteTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableVC.swift; sourceTree = "<group>"; };
-		B196F45626F2658C00BCF94B /* MoveToFolderTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToFolderTableVC.swift; sourceTree = "<group>"; };
 		B196F45826F265A400BCF94B /* NoteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteVC.swift; sourceTree = "<group>"; };
 		B1E697FD26EABDDC0039F77D /* Note_CRRKTerm2_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Note_CRRKTerm2_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E6980026EABDDC0039F77D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,8 +50,8 @@
 			children = (
 				B196F45026F2653300BCF94B /* FolderTableVC.swift */,
 				B196F45426F2657A00BCF94B /* NoteTableVC.swift */,
-				B196F45626F2658C00BCF94B /* MoveToFolderTableVC.swift */,
 				B196F45826F265A400BCF94B /* NoteVC.swift */,
+				B16AA51626F5386B009CC990 /* MoveToFolderVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,10 +183,10 @@
 			files = (
 				B196F44F26F2528F00BCF94B /* NoteModel.xcdatamodeld in Sources */,
 				B196F45926F265A400BCF94B /* NoteVC.swift in Sources */,
-				B196F45726F2658C00BCF94B /* MoveToFolderTableVC.swift in Sources */,
 				B1E6980126EABDDC0039F77D /* AppDelegate.swift in Sources */,
 				B1E6980326EABDDC0039F77D /* SceneDelegate.swift in Sources */,
 				B196F45526F2657A00BCF94B /* NoteTableVC.swift in Sources */,
+				B16AA51726F5386B009CC990 /* MoveToFolderVC.swift in Sources */,
 				B196F45126F2653300BCF94B /* FolderTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

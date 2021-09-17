@@ -73,21 +73,6 @@ class FolderTableVC: UITableViewController {
         }    
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -95,6 +80,7 @@ class FolderTableVC: UITableViewController {
         if let destinationVC = segue.destination as? NoteTableVC {
             if let indexPath = tableView.indexPathForSelectedRow {
                 destinationVC.selectedFolder = folders[indexPath.row]
+                destinationVC.title = "\(folders[indexPath.row].name ?? "") Notes"
             }
         }
     }

@@ -10,12 +10,13 @@
         <attribute name="dateUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="noteContent" optional="YES" attributeType="String"/>
         <attribute name="photoFileLocation" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="notes" inverseEntity="Folder"/>
     </entity>
     <elements>
-        <element name="Note" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="Folder" positionX="-63" positionY="54" width="128" height="59"/>
+        <element name="Note" positionX="-63" positionY="-18" width="128" height="164"/>
     </elements>
 </model>
