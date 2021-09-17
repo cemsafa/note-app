@@ -101,7 +101,7 @@
                         <barButtonItem enabled="NO" image="tray.and.arrow.down" catalog="system" id="A3w-Kj-qa3">
                             <connections>
                                 <action selector="moveBtnPressed:" destination="hAE-4j-z1h" id="bCX-Ry-TSF"/>
-                                <segue destination="SDI-1P-UHJ" kind="show" id="51g-ac-ls5"/>
+                                <segue destination="tqY-L4-xhl" kind="presentation" id="cb6-W0-zRt"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="qrL-4W-z8I"/>
@@ -128,50 +128,73 @@
             </objects>
             <point key="canvasLocation" x="1600" y="52"/>
         </scene>
-        <!--Move to folder ...-->
-        <scene sceneID="5jh-eH-Dfa">
+        <!--Move To FolderVC-->
+        <scene sceneID="pPm-mg-MHK">
             <objects>
-                <tableViewController id="SDI-1P-UHJ" customClass="MoveToFolderTableVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tpZ-J3-GCn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <viewController id="tqY-L4-xhl" customClass="MoveToFolderVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="51C-Cb-rrY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="moveToFolder-cell" textLabel="Hd4-yy-pmg" style="IBUITableViewCellStyleDefault" id="NFS-Rw-KB9">
-                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NFS-Rw-KB9" id="Lfy-Co-6oz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hd4-yy-pmg">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K3t-aQ-25z">
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="moveToFolder-cell" textLabel="qzM-vA-sHG" style="IBUITableViewCellStyleDefault" id="SSf-io-YZa">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SSf-io-YZa" id="YMQ-fL-yNZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="SDI-1P-UHJ" id="c1H-b2-lox"/>
-                            <outlet property="delegate" destination="SDI-1P-UHJ" id="bTT-cO-roV"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Move to folder ..." id="HxT-i1-291">
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" id="feH-FZ-hpi"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="xEJ-Tr-k8m">
-                            <connections>
-                                <action selector="cancelBtnPressed:" destination="SDI-1P-UHJ" id="9yM-8i-5zV"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FlZ-12-jwk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qzM-vA-sHG">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="tqY-L4-xhl" id="kzL-PI-S5p"/>
+                                    <outlet property="delegate" destination="tqY-L4-xhl" id="Hcl-KS-KNm"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3p-Bn-hUX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <items>
+                                    <navigationItem title="Move to folder ..." id="S1P-Mg-5tA">
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="QoG-j9-aUh">
+                                            <connections>
+                                                <action selector="cancelBtnPressed:" destination="tqY-L4-xhl" id="Hq8-wm-1BR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mQN-pC-1e2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mQN-pC-1e2" firstAttribute="bottom" secondItem="K3t-aQ-25z" secondAttribute="bottom" id="Lqo-N3-2xG"/>
+                            <constraint firstItem="u3p-Bn-hUX" firstAttribute="top" secondItem="mQN-pC-1e2" secondAttribute="top" id="R35-3I-Ucw"/>
+                            <constraint firstItem="u3p-Bn-hUX" firstAttribute="trailing" secondItem="mQN-pC-1e2" secondAttribute="trailing" id="SLO-YR-rL4"/>
+                            <constraint firstItem="K3t-aQ-25z" firstAttribute="top" secondItem="u3p-Bn-hUX" secondAttribute="bottom" id="VR7-eT-DDT"/>
+                            <constraint firstItem="K3t-aQ-25z" firstAttribute="leading" secondItem="mQN-pC-1e2" secondAttribute="leading" id="W4s-eC-ld5"/>
+                            <constraint firstItem="u3p-Bn-hUX" firstAttribute="leading" secondItem="mQN-pC-1e2" secondAttribute="leading" id="tRA-mV-Ryd"/>
+                            <constraint firstItem="mQN-pC-1e2" firstAttribute="trailing" secondItem="K3t-aQ-25z" secondAttribute="trailing" id="zm2-XQ-dnY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="K3t-aQ-25z" id="ZsK-eL-h4J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yuj-Yq-vfh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1600" y="775"/>
+            <point key="canvasLocation" x="1600" y="759"/>
         </scene>
         <!--NoteVC-->
         <scene sceneID="khV-c8-0fa">
