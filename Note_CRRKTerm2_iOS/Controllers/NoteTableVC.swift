@@ -25,10 +25,12 @@ class NoteTableVC: UITableViewController {
     
     private var editOption = false
     
+    private let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        showSearchBar()
     }
 
     // MARK: - Table view data source
@@ -49,41 +51,6 @@ class NoteTableVC: UITableViewController {
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -97,6 +64,23 @@ class NoteTableVC: UITableViewController {
                 }
             }
         }
+        if let destinationVC = segue.destination as? MoveToFolderVC {
+            if let indexPath = tableView.indexPathsForSelectedRows {
+                let rows = indexPath.map { $0.row }
+                destinationVC.selectedNotes = rows.map { notes[$0] }
+            }
+        }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard identifier != "moveNotesSegue" else { return true }
+        return !editOption
+    }
+    
+    @IBAction func unwindToNoteTableVC(_ unwindSegue: UIStoryboardSegue) {
+        saveNotes()
+        loadNotes()
+        tableView.setEditing(false, animated: true)
     }
 
     // MARK: - IBAction
@@ -108,17 +92,13 @@ class NoteTableVC: UITableViewController {
             rows.forEach { notes.remove(at: $0) }
             tableView.reloadData()
             saveNotes()
+            changeEditOptionState()
         }
     }
     
-    @IBAction func moveBtnPressed(_ sender: UIBarButtonItem) {
-    }
-    
     @IBAction func editBtnPressed(_ sender: UIBarButtonItem) {
-        editOption = !editOption
-        deleteBtn.isEnabled = !deleteBtn.isEnabled
-        moveBtn.isEnabled = !moveBtn.isEnabled
-        tableView.setEditing(editOption, animated: true)
+        tableView.allowsMultipleSelectionDuringEditing = true
+        changeEditOptionState()
     }
     
     // MARK: - Private methods
@@ -151,6 +131,22 @@ class NoteTableVC: UITableViewController {
         }
     }
     
+    private func changeEditOptionState() {
+        editOption = !editOption
+        deleteBtn.isEnabled = !deleteBtn.isEnabled
+        moveBtn.isEnabled = !moveBtn.isEnabled
+        tableView.setEditing(editOption, animated: true)
+    }
+    
+    private func showSearchBar() {
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search notes"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        searchController.searchBar.searchTextField.textColor = .lightGray
+    }
+    
     // MARK: - Public methods
     
     func updateNote(with title: String) {
@@ -164,5 +160,23 @@ class NoteTableVC: UITableViewController {
     
     func deleteNote(_ note: Note) {
         context.delete(note)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension NoteTableVC: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        loadNotes(with: predicate)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadNotes()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
     }
 }

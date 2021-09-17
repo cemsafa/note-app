@@ -6,10 +6,21 @@
 //
 
 import UIKit
+import CoreData
 
 class MoveToFolderVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var folders = [Folder]()
+    
+    var selectedNotes: [Note]? {
+        didSet {
+            loadFolders()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +43,19 @@ class MoveToFolderVC: UIViewController {
     // MARK: - IBAction
     
     @IBAction func cancelBtnPressed(_ sender: UIBarButtonItem) {
+    }
+    
+    // MARK: - Private mathods
+    
+    private func loadFolders() {
+        let request: NSFetchRequest<Folder> = Folder.fetchRequest()
+        let predicate = NSPredicate(format: "NOT name MATCHES %@", selectedNotes?.first?.parentFolder?.name ?? "")
+        request.predicate = predicate
+        do {
+            folders = try context.fetch(request)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
 }

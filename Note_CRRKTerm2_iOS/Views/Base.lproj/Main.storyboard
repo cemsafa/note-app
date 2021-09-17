@@ -100,8 +100,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lRb-2e-uIx"/>
                         <barButtonItem enabled="NO" image="tray.and.arrow.down" catalog="system" id="A3w-Kj-qa3">
                             <connections>
-                                <action selector="moveBtnPressed:" destination="hAE-4j-z1h" id="bCX-Ry-TSF"/>
-                                <segue destination="tqY-L4-xhl" kind="presentation" id="cb6-W0-zRt"/>
+                                <segue destination="tqY-L4-xhl" kind="presentation" identifier="moveNotesSegue" id="cb6-W0-zRt"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="qrL-4W-z8I"/>
@@ -190,9 +189,11 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="K3t-aQ-25z" id="ZsK-eL-h4J"/>
+                        <segue destination="9tV-7L-6QC" kind="unwind" unwindAction="unwindToNoteTableVC:" id="xxv-UF-NfF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yuj-Yq-vfh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="9tV-7L-6QC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1600" y="759"/>
         </scene>
@@ -222,7 +223,6 @@
                         </constraints>
                     </view>
                     <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="1uL-Q5-TkT"/>
                         <barButtonItem image="photo" catalog="system" id="5yu-Fg-tMQ">
                             <connections>
                                 <action selector="photoPressed:" destination="xJ8-IV-ZwH" id="Eck-9I-IV5"/>
@@ -235,6 +235,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="k8I-7o-C3l"/>
+                        <barButtonItem image="mappin.and.ellipse" catalog="system" id="Qav-sY-Ka9"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="aop-XL-LML"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -276,6 +277,7 @@
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
+        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="record.circle" catalog="system" width="128" height="121"/>
         <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
