@@ -29,20 +29,10 @@ class MoveToFolderVC: UIViewController {
         tableView.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     // MARK: - IBAction
     
     @IBAction func cancelBtnPressed(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Private mathods
@@ -65,15 +55,27 @@ class MoveToFolderVC: UIViewController {
 extension MoveToFolderVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return folders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "moveToFolder-cell")
+        cell.textLabel?.text = folders[indexPath.row].name
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let alert = UIAlertController(title: "Move notes to the folder", message: "You are about to move selected notes under \(folders[indexPath.row].name ?? "").\nDo you want to continue?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { action in
+            self.selectedNotes?.forEach({ note in
+                note.parentFolder = self.folders[indexPath.row]
+            })
+            self.performSegue(withIdentifier: "dismissMoveVC", sender: self)
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true, completion: nil)
+
     }
 }

@@ -80,7 +80,7 @@ class NoteTableVC: UITableViewController {
     @IBAction func unwindToNoteTableVC(_ unwindSegue: UIStoryboardSegue) {
         saveNotes()
         loadNotes()
-        tableView.setEditing(false, animated: true)
+        changeEditOptionState()
     }
 
     // MARK: - IBAction

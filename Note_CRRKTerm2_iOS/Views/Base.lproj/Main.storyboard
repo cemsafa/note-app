@@ -189,7 +189,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="K3t-aQ-25z" id="ZsK-eL-h4J"/>
-                        <segue destination="9tV-7L-6QC" kind="unwind" unwindAction="unwindToNoteTableVC:" id="xxv-UF-NfF"/>
+                        <segue destination="9tV-7L-6QC" kind="unwind" identifier="dismissMoveVC" unwindAction="unwindToNoteTableVC:" id="xxv-UF-NfF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yuj-Yq-vfh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
