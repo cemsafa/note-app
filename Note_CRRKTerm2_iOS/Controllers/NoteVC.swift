@@ -40,8 +40,6 @@ class NoteVC: UIViewController {
             ac.addAction(okAction)
             present(ac, animated: true)
         }
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,10 +61,30 @@ class NoteVC: UIViewController {
     
     // MARK: - IBAction
     
+    @IBAction func changeTitlePressed(_ sender: UIBarButtonItem) {
+        var textField = UITextField()
+        let ac = UIAlertController(title: "Change title", message: "Please enter a new title for your note", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { action in
+            if textField.text != "" {
+                self.navBar.title = textField.text
+            } else {
+                self.navBar.title = self.navBar.title
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ac.addTextField { $0.placeholder = "New title"; textField = $0 }
+        ac.addAction(okAction)
+        ac.addAction(cancelAction)
+        present(ac, animated: true)
+    }
+    
     @IBAction func photoPressed(_ sender: UIBarButtonItem) {
     }
     
     @IBAction func audioPressed(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func mapPressed(_ sender: UIBarButtonItem) {
     }
     
 }

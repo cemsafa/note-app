@@ -104,7 +104,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="qrL-4W-z8I"/>
-                        <barButtonItem image="rectangle.and.pencil.and.ellipsis" catalog="system" id="F4r-fU-LQI">
+                        <barButtonItem image="note.text.badge.plus" catalog="system" id="F4r-fU-LQI">
                             <connections>
                                 <segue destination="xJ8-IV-ZwH" kind="show" id="KOe-KS-4gI"/>
                             </connections>
@@ -235,9 +235,19 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="k8I-7o-C3l"/>
-                        <barButtonItem image="mappin.and.ellipse" catalog="system" id="Qav-sY-Ka9"/>
+                        <barButtonItem image="mappin.and.ellipse" catalog="system" id="Qav-sY-Ka9">
+                            <connections>
+                                <action selector="mapPressed:" destination="xJ8-IV-ZwH" id="s1h-4I-zkJ"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="aop-XL-LML"/>
+                    <navigationItem key="navigationItem" id="aop-XL-LML">
+                        <barButtonItem key="rightBarButtonItem" image="note" catalog="system" id="fKv-Bw-3LI">
+                            <connections>
+                                <action selector="changeTitlePressed:" destination="xJ8-IV-ZwH" id="2m0-4g-qQZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="navBar" destination="aop-XL-LML" id="7d9-hg-msA"/>
@@ -278,9 +288,10 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
+        <image name="note" catalog="system" width="128" height="106"/>
+        <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="record.circle" catalog="system" width="128" height="121"/>
-        <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <image name="tray.and.arrow.down" catalog="system" width="128" height="109"/>
         <systemColor name="labelColor">
