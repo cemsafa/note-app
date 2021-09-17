@@ -192,20 +192,37 @@
                         <viewLayoutGuide key="safeArea" id="c08-ZO-pkA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="c08-ZO-pkA" firstAttribute="bottom" secondItem="Mcv-pN-aQH" secondAttribute="bottom" id="KY3-Rh-P4S"/>
-                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="top" secondItem="c08-ZO-pkA" secondAttribute="top" id="Va5-5N-fTU"/>
-                            <constraint firstItem="c08-ZO-pkA" firstAttribute="trailing" secondItem="Mcv-pN-aQH" secondAttribute="trailing" id="Vd4-GV-STn"/>
-                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="leading" secondItem="c08-ZO-pkA" secondAttribute="leading" id="Z50-O7-50i"/>
+                            <constraint firstItem="c08-ZO-pkA" firstAttribute="bottom" secondItem="Mcv-pN-aQH" secondAttribute="bottom" id="ICd-JP-Ff1"/>
+                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="leading" secondItem="c08-ZO-pkA" secondAttribute="leading" id="PS8-aM-JBf"/>
+                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="trailing" secondItem="c08-ZO-pkA" secondAttribute="trailing" id="QhL-Y3-zqj"/>
+                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="top" secondItem="c08-ZO-pkA" secondAttribute="top" id="YD0-jw-NJu"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="1uL-Q5-TkT"/>
+                        <barButtonItem image="photo" catalog="system" id="5yu-Fg-tMQ">
+                            <connections>
+                                <action selector="photoPressed:" destination="xJ8-IV-ZwH" id="Eck-9I-IV5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="u8V-Re-Ob1"/>
+                        <barButtonItem image="record.circle" catalog="system" id="hGq-1s-zto">
+                            <connections>
+                                <action selector="audioPressed:" destination="xJ8-IV-ZwH" id="wAz-89-Vgm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="k8I-7o-C3l"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="aop-XL-LML"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="navBar" destination="aop-XL-LML" id="7d9-hg-msA"/>
                         <outlet property="noteTV" destination="Mcv-pN-aQH" id="Yj9-Lb-f7m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXN-RJ-Zbo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2429" y="52"/>
+            <point key="canvasLocation" x="2428.985507246377" y="51.5625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="imA-ua-a87">
@@ -236,6 +253,8 @@
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="record.circle" catalog="system" width="128" height="121"/>
         <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <image name="tray.and.arrow.down" catalog="system" width="128" height="109"/>

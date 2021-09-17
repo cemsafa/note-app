@@ -95,6 +95,7 @@ class FolderTableVC: UITableViewController {
         if let destinationVC = segue.destination as? NoteTableVC {
             if let indexPath = tableView.indexPathForSelectedRow {
                 destinationVC.selectedFolder = folders[indexPath.row]
+                destinationVC.title = "\(folders[indexPath.row].name ?? "") Notes"
             }
         }
     }

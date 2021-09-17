@@ -6,45 +6,48 @@
 //
 
 import UIKit
+import CoreData
 
 class NoteTableVC: UITableViewController {
 
     @IBOutlet weak var deleteBtn: UIBarButtonItem!
     @IBOutlet weak var moveBtn: UIBarButtonItem!
     
-    var selectedFolder: Folder?
+    var notes = [Note]()
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var selectedFolder: Folder? {
+        didSet {
+            loadNotes()
+        }
+    }
+    
+    private var editOption = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return notes.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "note-cell", for: indexPath)
+        cell.textLabel?.text = notes[indexPath.row].title
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -85,18 +88,80 @@ class NoteTableVC: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let destinationVC = segue.destination as? NoteVC {
+            destinationVC.delegate = self
+            if let cell = sender as? UITableViewCell {
+                if let index = tableView.indexPath(for: cell)?.row {
+                    
+                }
+            }
+        }
     }
 
     // MARK: - IBAction
     
     @IBAction func deleteBtnPressed(_ sender: UIBarButtonItem) {
+        if let indexPaths = tableView.indexPathsForSelectedRows {
+            let rows = (indexPaths.map { $0.row }).sorted(by: >)
+            rows.forEach { deleteNote(notes[$0]) }
+            rows.forEach { notes.remove(at: $0) }
+            tableView.reloadData()
+            saveNotes()
+        }
     }
     
     @IBAction func moveBtnPressed(_ sender: UIBarButtonItem) {
     }
     
     @IBAction func editBtnPressed(_ sender: UIBarButtonItem) {
+        editOption = !editOption
+        deleteBtn.isEnabled = !deleteBtn.isEnabled
+        moveBtn.isEnabled = !moveBtn.isEnabled
+        tableView.setEditing(editOption, animated: true)
+    }
+    
+    // MARK: - Private methods
+    
+    private func loadNotes(with predicate: NSPredicate? = nil) {
+        let request: NSFetchRequest<Note> = Note.fetchRequest()
+        let folderPredicate = NSPredicate(format: "parentFolder.name=%@", selectedFolder!.name!)
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [folderPredicate, additionalPredicate])
+        } else {
+            request.predicate = folderPredicate
+        }
+        
+        do {
+            notes = try context.fetch(request)
+        } catch {
+            print(error.localizedDescription)
+        }
+        tableView.reloadData()
+    }
+    
+    private func saveNotes() {
+        do {
+            try context.save()
+            tableView.reloadData()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    // MARK: - Public methods
+    
+    func updateNote(with title: String) {
+        notes = []
+        let newNote = Note(context: context)
+        newNote.title = title
+        newNote.parentFolder = selectedFolder
+        saveNotes()
+        loadNotes()
+    }
+    
+    func deleteNote(_ note: Note) {
+        context.delete(note)
     }
 }
