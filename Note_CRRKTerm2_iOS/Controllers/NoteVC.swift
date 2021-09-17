@@ -31,12 +31,12 @@ class NoteVC: UIViewController {
         if navBar.title != nil {
             navBar.title = selectedNote?.title
         } else {
-            let textField = UITextField()
+            var textField = UITextField()
             let ac = UIAlertController(title: "New Note", message: "Please enter a title for your note", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { action in
                 self.navBar.title = textField.text
             }
-            ac.addTextField { $0.placeholder = "New note title"; textField.text = $0.text }
+            ac.addTextField { $0.placeholder = "New note title"; textField = $0 }
             ac.addAction(okAction)
             present(ac, animated: true)
         }

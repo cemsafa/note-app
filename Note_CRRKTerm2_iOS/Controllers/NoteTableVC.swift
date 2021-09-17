@@ -92,7 +92,8 @@ class NoteTableVC: UITableViewController {
             destinationVC.delegate = self
             if let cell = sender as? UITableViewCell {
                 if let index = tableView.indexPath(for: cell)?.row {
-                    
+                    destinationVC.selectedNote = notes[index]
+                    destinationVC.navBar.title = notes[index].title
                 }
             }
         }
