@@ -21,6 +21,7 @@ subject/category to another.
 - [Ritika](https://github.com/RainaRiti)
 - [Kristina](https://github.com/kristina807287)
 - [Cem](https://github.com/cemsafa)
+- [Ruby](https://github.com/ruby2014)
 ---
 ## Following tutorials can help:
 [How to record audio using AVAudioRecorder](https://www.hackingwithswift.com/example-code/media/how-to-record-audio-using-avaudiorecorder)  
