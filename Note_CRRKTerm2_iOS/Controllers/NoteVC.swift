@@ -83,8 +83,8 @@ class NoteVC: UIViewController {
     @IBAction func photoPressed(_ sender: UIBarButtonItem) {
         // create an actionSheet
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        // create an action
-        
+        // 
+        if noteImg.isHidden == true{
             let cameraAction: UIAlertAction = UIAlertAction(title: "Image From Camera", style: .default) { action -> Void in
                 self.handleCamera()
             }
@@ -94,7 +94,15 @@ class NoteVC: UIViewController {
             }
             actionSheetController.addAction(cameraAction)
             actionSheetController.addAction(mediaAction)
-        
+        }
+        else{
+            let removeAction = UIAlertAction(title: "Remove Image", style: .destructive, handler: { (action) in
+                self.noteImg.isHidden = true
+                self.noteImg.image = nil
+                self.selectedImage = nil
+            })
+            actionSheetController.addAction(removeAction)
+        }
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in }
         actionSheetController.addAction(cancelAction)
         self.present(actionSheetController, animated: true, completion: nil)
