@@ -79,6 +79,7 @@ class NoteVC: UIViewController {
     }
     
     @IBAction func photoPressed(_ sender: UIBarButtonItem) {
+        print("Helo")
     }
     
     @IBAction func audioPressed(_ sender: UIBarButtonItem) {
