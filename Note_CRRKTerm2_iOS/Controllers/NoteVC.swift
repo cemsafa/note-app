@@ -37,6 +37,7 @@ class NoteVC: UIViewController {
 
         if navBar.title != nil {
             navBar.title = selectedNote?.title
+            noteTV.text = selectedNote?.noteContent
         } else {
             var textField = UITextField()
             let ac = UIAlertController(title: "New Note", message: "Please enter a title for your note", preferredStyle: .alert)
@@ -56,7 +57,7 @@ class NoteVC: UIViewController {
             delegate?.deleteNote(selectedNote!)
         }
         guard navBar.title != "" else { return }
-        delegate?.updateNote(with: navBar.title!)
+        delegate?.updateNote(with: navBar.title!, with: noteTV.text)
     }
 
     // MARK: - Navigation

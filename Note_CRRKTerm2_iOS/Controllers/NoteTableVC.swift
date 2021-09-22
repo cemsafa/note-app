@@ -148,11 +148,12 @@ class NoteTableVC: UITableViewController {
     
     // MARK: - Public methods
     
-    func updateNote(with title: String) {
+    func updateNote(with title: String, with content: String) {
         notes = []
         let newNote = Note(context: context)
         newNote.title = title
         newNote.dateUpdated = Date()
+        newNote.noteContent = content
         newNote.parentFolder = selectedFolder
         saveNotes()
         loadNotes()
@@ -167,7 +168,9 @@ class NoteTableVC: UITableViewController {
 
 extension NoteTableVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        let contentPredicate = NSPredicate(format: "noteContent CONTAINS[cd] %@", searchBar.text!)
+        let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
         loadNotes(with: predicate)
     }
     
