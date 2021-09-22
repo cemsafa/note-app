@@ -12,6 +12,7 @@ class NoteVC: UIViewController {
 
     @IBOutlet weak var noteTV: UITextView!
     @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var noteImg: UIImageView!
     
     weak var delegate: NoteTableVC?
     
@@ -128,4 +129,26 @@ class NoteVC: UIViewController {
     @IBAction func mapPressed(_ sender: UIBarButtonItem) {
     }
     
+}
+extension NoteVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//        imageView.isHidden = false
+//
+//        if let image = info[.editedImage] as? UIImage {
+//            noteImg.image = image
+//
+//        }
+//        else if let image = info[.originalImage] as? UIImage {
+//            noteImg.image = image
+//        } else {
+//            print("Other source")
+//        }
+//        selectedImage = noteImg.image!.jpegData(compressionQuality: 0.75)
+//
+//        picker.dismiss(animated: true, completion: nil)
+//    }
+//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+//        picker.dismiss(animated: true, completion: nil)
+//    }
+//
 }
