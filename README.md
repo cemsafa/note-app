@@ -13,7 +13,7 @@ The application should have the following features:
 - [ ] Users' location that is the information on where the note was taken should be captured as part of the note.
 - [ ] Users later should be able to see the location on a map for every note that was taken.
 - [ ] Users should be able to record audio and associate the audio file with the note.
-- [ ] Users should be able as well to change the subject/category of a note i.e. move a note from one
+- [x] Users should be able as well to change the subject/category of a note i.e. move a note from one
 subject/category to another.
 ---
 **Group Members:**  
