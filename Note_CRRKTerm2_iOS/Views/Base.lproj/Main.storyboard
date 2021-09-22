@@ -206,20 +206,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mcv-pN-aQH">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="98" width="414" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ja-J6-Jw9">
+                                <rect key="frame" x="5" y="93" width="404" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c08-ZO-pkA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="c08-ZO-pkA" firstAttribute="bottom" secondItem="Mcv-pN-aQH" secondAttribute="bottom" id="ICd-JP-Ff1"/>
-                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="leading" secondItem="c08-ZO-pkA" secondAttribute="leading" id="PS8-aM-JBf"/>
-                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="trailing" secondItem="c08-ZO-pkA" secondAttribute="trailing" id="QhL-Y3-zqj"/>
-                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="top" secondItem="c08-ZO-pkA" secondAttribute="top" id="YD0-jw-NJu"/>
+                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="leading" secondItem="c08-ZO-pkA" secondAttribute="leading" id="5G8-O2-4sl"/>
+                            <constraint firstItem="0Ja-J6-Jw9" firstAttribute="top" secondItem="c08-ZO-pkA" secondAttribute="top" constant="5" id="8AI-rJ-gaL"/>
+                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="bottom" secondItem="c08-ZO-pkA" secondAttribute="bottom" id="F34-iu-Y7x"/>
+                            <constraint firstItem="0Ja-J6-Jw9" firstAttribute="leading" secondItem="9tL-3U-uUb" secondAttribute="leading" constant="5" id="GeH-Ae-O6X"/>
+                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="top" secondItem="0Ja-J6-Jw9" secondAttribute="bottom" constant="5" id="WVS-Xg-a1d"/>
+                            <constraint firstAttribute="trailing" secondItem="0Ja-J6-Jw9" secondAttribute="trailing" constant="5" id="iT9-8i-jwq"/>
+                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="trailing" secondItem="c08-ZO-pkA" secondAttribute="trailing" id="lFc-TV-akP"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -250,6 +259,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="dateLbl" destination="0Ja-J6-Jw9" id="rQN-PZ-zqe"/>
                         <outlet property="navBar" destination="aop-XL-LML" id="7d9-hg-msA"/>
                         <outlet property="noteTV" destination="Mcv-pN-aQH" id="Yj9-Lb-f7m"/>
                     </connections>

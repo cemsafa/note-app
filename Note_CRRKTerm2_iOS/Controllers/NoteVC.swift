@@ -12,6 +12,13 @@ class NoteVC: UIViewController {
 
     @IBOutlet weak var noteTV: UITextView!
     @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var dateLbl: UILabel! {
+        didSet {
+            if selectedNote?.dateUpdated != nil {
+                dateLbl.text = setDate(with: (selectedNote?.dateUpdated)!)
+            }
+        }
+    }
     
     weak var delegate: NoteTableVC?
     
@@ -33,8 +40,9 @@ class NoteVC: UIViewController {
         } else {
             var textField = UITextField()
             let ac = UIAlertController(title: "New Note", message: "Please enter a title for your note", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { action in
-                self.navBar.title = textField.text
+            let okAction = UIAlertAction(title: "OK", style: .default) { [self] action in
+                navBar.title = textField.text
+                selectedNote?.dateCreated = Date()
             }
             ac.addTextField { $0.placeholder = "New note title"; textField = $0 }
             ac.addAction(okAction)
@@ -85,6 +93,15 @@ class NoteVC: UIViewController {
     }
     
     @IBAction func mapPressed(_ sender: UIBarButtonItem) {
+    }
+    
+    // MARK: - Private methods
+    
+    private func setDate(with date: Date) -> String {
+        let format = DateFormatter()
+        format.dateFormat = "yyyy/MM/dd - h:mm a"
+        let formattedDate = format.string(from: date)
+        return formattedDate
     }
     
 }

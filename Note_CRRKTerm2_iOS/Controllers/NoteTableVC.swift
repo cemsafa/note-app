@@ -144,7 +144,6 @@ class NoteTableVC: UITableViewController {
         searchController.searchBar.placeholder = "Search notes"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        searchController.searchBar.searchTextField.textColor = .lightGray
     }
     
     // MARK: - Public methods
@@ -153,6 +152,7 @@ class NoteTableVC: UITableViewController {
         notes = []
         let newNote = Note(context: context)
         newNote.title = title
+        newNote.dateUpdated = Date()
         newNote.parentFolder = selectedFolder
         saveNotes()
         loadNotes()
@@ -169,6 +169,10 @@ extension NoteTableVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
         loadNotes(with: predicate)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        loadNotes()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
