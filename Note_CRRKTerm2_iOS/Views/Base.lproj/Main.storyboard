@@ -212,13 +212,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mcv-pN-aQH">
-                                <rect key="frame" x="0.0" y="98" width="414" height="715"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ykk-at-JGV">
+                                <rect key="frame" x="0.0" y="93" width="414" height="803"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mcv-pN-aQH">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="803"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VPH-If-1g9">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="VPH-If-1g9" firstAttribute="leading" secondItem="Ykk-at-JGV" secondAttribute="leading" id="Aja-me-dVs"/>
+                                    <constraint firstAttribute="trailing" secondItem="VPH-If-1g9" secondAttribute="trailing" id="H05-6Y-feH"/>
+                                </constraints>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ja-J6-Jw9">
                                 <rect key="frame" x="5" y="93" width="404" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
@@ -229,13 +241,13 @@
                         <viewLayoutGuide key="safeArea" id="c08-ZO-pkA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="leading" secondItem="c08-ZO-pkA" secondAttribute="leading" id="5G8-O2-4sl"/>
+                            <constraint firstAttribute="bottom" secondItem="Ykk-at-JGV" secondAttribute="bottom" id="3d1-7l-BJ1"/>
+                            <constraint firstItem="Ykk-at-JGV" firstAttribute="top" secondItem="0Ja-J6-Jw9" secondAttribute="bottom" id="5p1-Mj-4IC"/>
                             <constraint firstItem="0Ja-J6-Jw9" firstAttribute="top" secondItem="c08-ZO-pkA" secondAttribute="top" constant="5" id="8AI-rJ-gaL"/>
-                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="bottom" secondItem="c08-ZO-pkA" secondAttribute="bottom" id="F34-iu-Y7x"/>
                             <constraint firstItem="0Ja-J6-Jw9" firstAttribute="leading" secondItem="9tL-3U-uUb" secondAttribute="leading" constant="5" id="GeH-Ae-O6X"/>
-                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="top" secondItem="0Ja-J6-Jw9" secondAttribute="bottom" constant="5" id="WVS-Xg-a1d"/>
+                            <constraint firstItem="Ykk-at-JGV" firstAttribute="leading" secondItem="9tL-3U-uUb" secondAttribute="leading" id="KOy-vu-eoi"/>
                             <constraint firstAttribute="trailing" secondItem="0Ja-J6-Jw9" secondAttribute="trailing" constant="5" id="iT9-8i-jwq"/>
-                            <constraint firstItem="Mcv-pN-aQH" firstAttribute="trailing" secondItem="c08-ZO-pkA" secondAttribute="trailing" id="lFc-TV-akP"/>
+                            <constraint firstItem="c08-ZO-pkA" firstAttribute="trailing" secondItem="Ykk-at-JGV" secondAttribute="trailing" id="tod-R9-fbd"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -269,6 +281,7 @@
                     <connections>
                         <outlet property="dateLbl" destination="0Ja-J6-Jw9" id="rQN-PZ-zqe"/>
                         <outlet property="navBar" destination="aop-XL-LML" id="7d9-hg-msA"/>
+                        <outlet property="noteImg" destination="VPH-If-1g9" id="y5C-ph-i6c"/>
                         <outlet property="noteTV" destination="Mcv-pN-aQH" id="Yj9-Lb-f7m"/>
                     </connections>
                 </viewController>

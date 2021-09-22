@@ -72,10 +72,10 @@ class NoteVC: UIViewController {
         else{
             guard navBar.title != "" else { return }
             if let delegate = delegate{
-                let newNote = Note(context: delegate.context)
-                newNote.photo = selectedImage
-                newNote.title = title
-                delegate.addNote(with: newNote)
+//                let newNote = Note(context: delegate.context)
+//                newNote.photo = selectedImage
+//                newNote.title = title
+                delegate.updateNote(with: navBar.title!, with: noteTV.text)
             }
         }
         
