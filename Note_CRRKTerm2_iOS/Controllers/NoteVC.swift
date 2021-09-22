@@ -83,8 +83,9 @@ class NoteVC: UIViewController {
     @IBAction func photoPressed(_ sender: UIBarButtonItem) {
         // create an actionSheet
         let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        // 
+        // Check for weither to show add image option or remove
         if noteImg.isHidden == true{
+            // Add image options
             let cameraAction: UIAlertAction = UIAlertAction(title: "Image From Camera", style: .default) { action -> Void in
                 self.handleCamera()
             }
@@ -96,6 +97,7 @@ class NoteVC: UIViewController {
             actionSheetController.addAction(mediaAction)
         }
         else{
+            //Remove options
             let removeAction = UIAlertAction(title: "Remove Image", style: .destructive, handler: { (action) in
                 self.noteImg.isHidden = true
                 self.noteImg.image = nil
@@ -116,10 +118,8 @@ class NoteVC: UIViewController {
             self.present(imagePicker, animated: true)
         }
         else{
-            print("Camera not available0")
+            print("Camera not available")
         }
-       
-
     }
 
     func handlePhotoLibrary()
@@ -129,7 +129,6 @@ class NoteVC: UIViewController {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true)
-
     }
     
     @IBAction func audioPressed(_ sender: UIBarButtonItem) {
@@ -145,13 +144,13 @@ extension NoteVC : UIImagePickerControllerDelegate, UINavigationControllerDelega
 
         if let image = info[.editedImage] as? UIImage {
             noteImg.image = image
-
         }
         else if let image = info[.originalImage] as? UIImage {
             noteImg.image = image
         } else {
             print("Other source")
         }
+        //converted image into data so, we can store in coredata
         selectedImage = noteImg.image!.jpegData(compressionQuality: 0.75)
 
         picker.dismiss(animated: true, completion: nil)
