@@ -50,7 +50,7 @@ class NoteVC: UIViewController {
             delegate?.deleteNote(selectedNote!)
         }
         guard navBar.title != "" else { return }
-        delegate?.updateNote(with: navBar.title!)
+        delegate?.updateNote(with: navBar.title!, image: selectedImage)
     }
 
     // MARK: - Navigation
