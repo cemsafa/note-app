@@ -101,12 +101,41 @@ class NoteTableVC: UITableViewController {
         changeEditOptionState()
     }
     
+    @IBAction func sortBtnPressed(_ sender: UIBarButtonItem) {
+        let ac = UIAlertController(title: "Change sort type", message: "", preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Sort by title (ascending)", style: .default) { [self] action in
+            loadNotes(sortBy: "title", isAsc: true)
+        })
+        ac.addAction(UIAlertAction(title: "Sort by title (descending)", style: .default) { [self] action in
+            loadNotes(sortBy: "title", isAsc: false)
+        })
+        ac.addAction(UIAlertAction(title: "Sort by created date (ascending)", style: .default) { [self] action in
+            loadNotes(sortBy: "dateCreated", isAsc: true)
+        })
+        ac.addAction(UIAlertAction(title: "Sort by created date (descending)", style: .default) { [self] action in
+            loadNotes(sortBy: "dateCreated", isAsc: false)
+        })
+        ac.addAction(UIAlertAction(title: "Sort by updated date (ascending)", style: .default) { [self] action in
+            loadNotes(sortBy: "dateUpdated", isAsc: true)
+        })
+        ac.addAction(UIAlertAction(title: "Sort by updated date (descending)", style: .default) { [self] action in
+            loadNotes(sortBy: "dateUpdated", isAsc: false)
+        })
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(ac, animated: true)
+    }
+    
     // MARK: - Private methods
     
-    private func loadNotes(with predicate: NSPredicate? = nil) {
+    private func loadNotes(with predicate: NSPredicate? = nil, sortBy: String? = nil, isAsc: Bool? = nil) {
         let request: NSFetchRequest<Note> = Note.fetchRequest()
         let folderPredicate = NSPredicate(format: "parentFolder.name=%@", selectedFolder!.name!)
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        if sortBy != nil && isAsc != nil {
+            request.sortDescriptors = [NSSortDescriptor(key: sortBy, ascending: isAsc!)]
+        } else {
+            request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        }
         
         if let additionalPredicate = predicate {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [folderPredicate, additionalPredicate])

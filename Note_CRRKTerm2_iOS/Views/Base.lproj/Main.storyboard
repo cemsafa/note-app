@@ -111,11 +111,18 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Notes" id="Vdk-mx-2rF" userLabel="Notes">
-                        <barButtonItem key="rightBarButtonItem" image="ellipsis" catalog="system" id="H3O-9X-3B3">
-                            <connections>
-                                <action selector="editBtnPressed:" destination="hAE-4j-z1h" id="96R-Gm-hYc"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="ellipsis" catalog="system" id="H3O-9X-3B3">
+                                <connections>
+                                    <action selector="editBtnPressed:" destination="hAE-4j-z1h" id="96R-Gm-hYc"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="arrow.up.arrow.down" catalog="system" id="1sh-C2-uTN">
+                                <connections>
+                                    <action selector="sortBtnPressed:" destination="hAE-4j-z1h" id="JPe-Eb-jFm"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -295,6 +302,7 @@
         <segue reference="4Hn-t4-0L8"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.up.arrow.down" catalog="system" width="128" height="98"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="folder.badge.plus" catalog="system" width="128" height="91"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
