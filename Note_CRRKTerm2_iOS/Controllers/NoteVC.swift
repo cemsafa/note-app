@@ -79,7 +79,47 @@ class NoteVC: UIViewController {
     }
     
     @IBAction func photoPressed(_ sender: UIBarButtonItem) {
-        print("Helo")
+        // create an actionSheet
+        let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        // create an action
+        
+            let cameraAction: UIAlertAction = UIAlertAction(title: "Image From Camera", style: .default) { action -> Void in
+                self.handleCamera()
+            }
+            let mediaAction: UIAlertAction = UIAlertAction(title: "Image From Gallary", style: .default) { action -> Void in
+
+                self.handlePhotoLibrary()
+            }
+            actionSheetController.addAction(cameraAction)
+            actionSheetController.addAction(mediaAction)
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in }
+        actionSheetController.addAction(cancelAction)
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+    func handleCamera()
+    {
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true)
+        }
+        else{
+            print("Camera not available0")
+        }
+       
+
+    }
+
+    func handlePhotoLibrary()
+    {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true)
+
     }
     
     @IBAction func audioPressed(_ sender: UIBarButtonItem) {
