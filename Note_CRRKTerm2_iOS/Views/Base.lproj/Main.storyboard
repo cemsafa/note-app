@@ -254,6 +254,7 @@
                         <barButtonItem image="mappin.and.ellipse" catalog="system" id="Qav-sY-Ka9">
                             <connections>
                                 <action selector="mapPressed:" destination="xJ8-IV-ZwH" id="s1h-4I-zkJ"/>
+                                <segue destination="rbb-AA-9Gr" kind="presentation" id="d3C-og-Yrt"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -274,6 +275,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXN-RJ-Zbo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2428.985507246377" y="51.5625"/>
+        </scene>
+        <!--MapVC-->
+        <scene sceneID="VwC-o6-0D9">
+            <objects>
+                <viewController id="rbb-AA-9Gr" customClass="MapVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TAT-77-6la">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SmJ-xQ-yKu">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xge-QT-vfJ">
+                                <rect key="frame" x="15" y="15" width="44" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="closeBtnPressed:" destination="rbb-AA-9Gr" eventType="touchUpInside" id="apc-MT-YeQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WW2-6b-5p1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WW2-6b-5p1" firstAttribute="trailing" secondItem="SmJ-xQ-yKu" secondAttribute="trailing" id="84m-jW-bjW"/>
+                            <constraint firstItem="xge-QT-vfJ" firstAttribute="leading" secondItem="WW2-6b-5p1" secondAttribute="leading" constant="15" id="EXz-9S-XLZ"/>
+                            <constraint firstItem="SmJ-xQ-yKu" firstAttribute="top" secondItem="WW2-6b-5p1" secondAttribute="top" id="O95-tb-Jyg"/>
+                            <constraint firstItem="WW2-6b-5p1" firstAttribute="bottom" secondItem="SmJ-xQ-yKu" secondAttribute="bottom" id="gBa-tI-NGi"/>
+                            <constraint firstItem="SmJ-xQ-yKu" firstAttribute="leading" secondItem="WW2-6b-5p1" secondAttribute="leading" id="iBe-3E-Ytc"/>
+                            <constraint firstItem="xge-QT-vfJ" firstAttribute="top" secondItem="WW2-6b-5p1" secondAttribute="top" constant="15" id="lFt-gw-8Xk"/>
+                            <constraint firstItem="WW2-6b-5p1" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xge-QT-vfJ" secondAttribute="trailing" priority="250" constant="800" id="ugZ-Ro-SZW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UNU-IA-cie"/>
+                    <connections>
+                        <outlet property="mapView" destination="SmJ-xQ-yKu" id="3Eq-XL-gTe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Z6-gx-gl4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3264" y="52"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="imA-ua-a87">

@@ -10,8 +10,8 @@ The application should have the following features:
 - [x] Users should be able to search for specific note by title or by keyword that may be contained in a note.
 - [x] Users should be allowed to sort notes by title or by date/time that were created.
 - [ ] Users should be allowed to take picture (or use a picture that was previously taken) and store it as part of a note.
-- [ ] Users' location that is the information on where the note was taken should be captured as part of the note.
-- [ ] Users later should be able to see the location on a map for every note that was taken.
+- [x] Users' location that is the information on where the note was taken should be captured as part of the note.
+- [x] Users later should be able to see the location on a map for every note that was taken.
 - [ ] Users should be able to record audio and associate the audio file with the note.
 - [x] Users should be able as well to change the subject/category of a note i.e. move a note from one
 subject/category to another.

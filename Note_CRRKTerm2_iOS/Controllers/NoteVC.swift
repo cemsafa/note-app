@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 class NoteVC: UIViewController {
 
@@ -30,6 +31,8 @@ class NoteVC: UIViewController {
     
     var editMode = false
     
+    let locationManager = CLLocationManager()
+    
     let image = NSTextAttachment()
     
     override func viewDidLoad() {
@@ -49,6 +52,12 @@ class NoteVC: UIViewController {
             ac.addAction(okAction)
             present(ac, animated: true)
         }
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,8 +73,9 @@ class NoteVC: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let destinationVC = segue.destination as? MapVC {
+            destinationVC.note = selectedNote
+        }
     }
     
     // MARK: - IBAction
@@ -105,4 +115,15 @@ class NoteVC: UIViewController {
         return formattedDate
     }
     
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension NoteVC: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        selectedNote?.latitude = location.coordinate.latitude
+        selectedNote?.longitude = location.coordinate.longitude
+    }
 }
