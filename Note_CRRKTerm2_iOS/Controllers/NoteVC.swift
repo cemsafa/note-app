@@ -17,15 +17,9 @@ class NoteVC: UIViewController {
     
     weak var delegate: NoteTableVC?
     
-    var selectedNote: Note? {
-        didSet {
-            editMode = true
-        }
-    }
+    var selectedNote: Note?
     
-    var editMode = false
-    
-    let image = NSTextAttachment()
+    //let image = NSTextAttachment()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +36,25 @@ class NoteVC: UIViewController {
             ac.addAction(okAction)
             present(ac, animated: true)
         }
+        setupUI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if editMode {
-            delegate?.deleteNote(selectedNote!)
+        if let _ = selectedNote{
+            selectedNote?.photo = selectedImage
+            try! delegate?.context.save()
         }
-        guard navBar.title != "" else { return }
-        delegate?.updateNote(with: navBar.title!, image: selectedImage)
+        else{
+            guard navBar.title != "" else { return }
+            if let delegate = delegate{
+                let newNote = Note(context: delegate.context)
+                newNote.photo = selectedImage
+                newNote.title = title
+                delegate.addNote(with: newNote)
+            }
+        }
+        
     }
 
     // MARK: - Navigation
@@ -121,7 +125,12 @@ class NoteVC: UIViewController {
             print("Camera not available")
         }
     }
-
+    func setupUI() {
+        if let image = selectedNote?.photo{
+            noteImg.isHidden = false
+            noteImg.image = UIImage(data: image)
+        }
+    }
     func handlePhotoLibrary()
     {
         let imagePicker = UIImagePickerController()

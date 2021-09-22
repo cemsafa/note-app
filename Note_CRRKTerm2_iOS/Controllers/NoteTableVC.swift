@@ -148,12 +148,9 @@ class NoteTableVC: UITableViewController {
     }
     
     // MARK: - Public methods
-    
-    func updateNote(with title: String, image : Data?) {
+   
+    func addNote(with newNote : Note) {
         notes = []
-        let newNote = Note(context: context)
-        newNote.photo = image
-        newNote.title = title
         newNote.parentFolder = selectedFolder
         saveNotes()
         loadNotes()
