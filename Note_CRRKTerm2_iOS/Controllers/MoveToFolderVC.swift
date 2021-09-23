@@ -24,9 +24,6 @@ class MoveToFolderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.delegate = self
-        tableView.dataSource = self
     }
     
     // MARK: - IBAction
@@ -48,7 +45,6 @@ class MoveToFolderVC: UIViewController {
             print(error.localizedDescription)
         }
     }
-    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -77,6 +73,5 @@ extension MoveToFolderVC: UITableViewDelegate, UITableViewDataSource {
         alert.addAction(yesAction)
         alert.addAction(noAction)
         present(alert, animated: true, completion: nil)
-
     }
 }
