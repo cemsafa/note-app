@@ -8,6 +8,14 @@
 import UIKit
 import CoreData
 
+enum Sorting:String {
+    case title = "title"
+    case titleReverse = "titleReverse"
+//    case dateCreated = "dateCreated"
+//    case dateCreatedReverse = "dateCreatedReverse"
+//    case dateUpdated = "dateUpdated"
+//    case dateUpdatedReverse = "dateUpdatedReverse"
+}
 class NoteTableVC: UITableViewController {
 
     @IBOutlet weak var deleteBtn: UIBarButtonItem!
@@ -104,10 +112,10 @@ class NoteTableVC: UITableViewController {
     @IBAction func sortBtnPressed(_ sender: UIBarButtonItem) {
         let ac = UIAlertController(title: "Change sort type", message: "", preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Sort by title (ascending)", style: .default) { [self] action in
-            loadNotes(sortBy: "title", isAsc: true)
+            sortNotes(for: .title)
         })
         ac.addAction(UIAlertAction(title: "Sort by title (descending)", style: .default) { [self] action in
-            loadNotes(sortBy: "title", isAsc: false)
+            sortNotes(for: .titleReverse)
         })
         ac.addAction(UIAlertAction(title: "Sort by created date (ascending)", style: .default) { [self] action in
             loadNotes(sortBy: "dateCreated", isAsc: true)
@@ -127,6 +135,16 @@ class NoteTableVC: UITableViewController {
     
     // MARK: - Private methods
     
+    private func sortNotes(for type : Sorting){
+        switch type {
+        case .title:
+            notes.sort {$0.title! < $1.title!}
+        case .titleReverse:
+            notes.sort {$0.title! > $1.title!}
+        }
+        tableView.reloadData()
+    }
+    
     private func loadNotes(with predicate: NSPredicate? = nil, sortBy: String? = nil, isAsc: Bool? = nil) {
         let request: NSFetchRequest<Note> = Note.fetchRequest()
         let folderPredicate = NSPredicate(format: "parentFolder.name=%@", selectedFolder!.name!)
@@ -136,7 +154,6 @@ class NoteTableVC: UITableViewController {
         } else {
             request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         }
-        
         if let additionalPredicate = predicate {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [folderPredicate, additionalPredicate])
         } else {
@@ -196,7 +213,7 @@ class NoteTableVC: UITableViewController {
 // MARK: - UISearchBarDelegate
 
 extension NoteTableVC: UISearchBarDelegate {
-//   
+//
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         loadNotes()
     }
