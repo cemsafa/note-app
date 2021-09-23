@@ -14,6 +14,8 @@ class NoteTableVC: UITableViewController {
     @IBOutlet weak var moveBtn: UIBarButtonItem!
     
     var notes = [Note]()
+    var arrFilterNotes = [Note]()
+    var usingSearch = false
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -196,23 +198,29 @@ class NoteTableVC: UITableViewController {
 // MARK: - UISearchBarDelegate
 
 extension NoteTableVC: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-        let contentPredicate = NSPredicate(format: "noteContent CONTAINS[cd] %@", searchBar.text!)
-        let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
-        loadNotes(with: predicate)
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        loadNotes()
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.count == 0 {
-            loadNotes()
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
-        }
+        usingSearch = true
+        arrFilterNotes.removeAll()
+        arrFilterNotes =  Array(Set(notes.filter({($0.title?.contains(searchText))!}) + notes.filter({($0.noteContent?.contains(searchText))!})))
+        tableView.reloadData()
     }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+//        let contentPredicate = NSPredicate(format: "noteContent CONTAINS[cd] %@", searchBar.text!)
+//        let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
+//        loadNotes(with: predicate)
+//    }
+//
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        loadNotes()
+//    }
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchBar.text?.count == 0 {
+//            loadNotes()
+//            DispatchQueue.main.async {
+//                searchBar.resignFirstResponder()
+//            }
+//        }
+//    }
 }
