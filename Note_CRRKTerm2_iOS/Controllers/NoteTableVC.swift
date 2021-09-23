@@ -110,6 +110,7 @@ class NoteTableVC: UITableViewController {
     }
     
     @IBAction func sortBtnPressed(_ sender: UIBarButtonItem) {
+        //Showing Sorting options in actionsheet
         let ac = UIAlertController(title: "Change sort type", message: "", preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Sort by title (ascending)", style: .default) { [self] action in
             sortNotes(for: .title)
@@ -135,6 +136,7 @@ class NoteTableVC: UITableViewController {
     
     // MARK: - Private methods
     
+    // This function can sort notes in acc or desc order of its title
     private func sortNotes(for type : Sorting){
         switch type {
         case .title:
@@ -185,6 +187,7 @@ class NoteTableVC: UITableViewController {
     }
     
     private func showSearchBar() {
+        //Setting a searchbar
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search notes"
@@ -213,12 +216,13 @@ class NoteTableVC: UITableViewController {
 // MARK: - UISearchBarDelegate
 
 extension NoteTableVC: UISearchBarDelegate {
-//
+//Searchbar delegate methods
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         loadNotes()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //If there is no text in searchbar,We reload all the notes
         if searchBar.text?.count == 0 {
             loadNotes()
             DispatchQueue.main.async {
@@ -226,10 +230,11 @@ extension NoteTableVC: UISearchBarDelegate {
             }
         }
         else{
-            let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-            let contentPredicate = NSPredicate(format: "noteContent CONTAINS[cd] %@", searchBar.text!)
+            //Searching note by keyword which user has entered
+            let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!) //Predicate which will match search keyword with title of notes
+            let contentPredicate = NSPredicate(format: "noteContent CONTAINS[cd] %@", searchBar.text!)//Predicate which will match search keyword with description of notes
             let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
-            loadNotes(with: predicate)
+            loadNotes(with: predicate) // Calling function to filter the notes according to predicates
         }
        
     }
