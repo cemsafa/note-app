@@ -38,6 +38,7 @@ class MoveToFolderVC: UIViewController {
     // MARK: - Private mathods
     
     private func loadFolders() {
+        //Fetching all folders except the one 
         let request: NSFetchRequest<Folder> = Folder.fetchRequest()
         let predicate = NSPredicate(format: "NOT name MATCHES %@", selectedNotes?.first?.parentFolder?.name ?? "")
         request.predicate = predicate
