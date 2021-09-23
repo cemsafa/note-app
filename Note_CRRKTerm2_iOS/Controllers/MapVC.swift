@@ -19,17 +19,11 @@ class MapVC: UIViewController {
         super.viewDidLoad()
 
         if note != nil {
-//            zoomToLocation(with: CLLocationCoordinate2D(latitude: note!.latitude, longitude: note!.longitude))
             displayLocation(latitude: note!.latitude, longitude: note!.longitude, title: note!.title!, subtitle: "Note saved here")
         }
     }
     
     // MARK: - Private method
-    
-    private func zoomToLocation(with coordinate: CLLocationCoordinate2D) {
-        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
-        mapView.setRegion(region, animated: true)
-    }
     
     private func displayLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, title: String, subtitle: String) {
         let deltaLatitude: CLLocationDegrees = 0.05
