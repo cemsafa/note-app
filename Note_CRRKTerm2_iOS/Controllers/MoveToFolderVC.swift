@@ -18,7 +18,7 @@ class MoveToFolderVC: UIViewController {
     
     var selectedNotes: [Note]? {
         didSet {
-            loadFolders()
+        //    loadFolders()
         }
     }
     
@@ -37,17 +37,7 @@ class MoveToFolderVC: UIViewController {
     
     // MARK: - Private mathods
     
-    private func loadFolders() {
-        //Fetching all folders except the one 
-        let request: NSFetchRequest<Folder> = Folder.fetchRequest()
-        let predicate = NSPredicate(format: "NOT name MATCHES %@", selectedNotes?.first?.parentFolder?.name ?? "")
-        request.predicate = predicate
-        do {
-            folders = try context.fetch(request)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+   
     
 }
 
@@ -66,17 +56,7 @@ extension MoveToFolderVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Move notes to the folder", message: "You are about to move selected notes under \(folders[indexPath.row].name ?? "").\nDo you want to continue?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { action in
-            self.selectedNotes?.forEach({ note in
-                note.parentFolder = self.folders[indexPath.row]
-            })
-            self.performSegue(withIdentifier: "dismissMoveVC", sender: self)
-        }
-        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        present(alert, animated: true, completion: nil)
+      
 
     }
 }
