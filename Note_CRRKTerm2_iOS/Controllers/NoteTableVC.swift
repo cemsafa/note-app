@@ -65,6 +65,7 @@ class NoteTableVC: UITableViewController {
             }
         }
         if let destinationVC = segue.destination as? MoveToFolderVC {
+            //Filtering selected notes and sending to move folderscreen
             if let indexPath = tableView.indexPathsForSelectedRows {
                 let rows = indexPath.map { $0.row }
                 destinationVC.selectedNotes = rows.map { notes[$0] }
