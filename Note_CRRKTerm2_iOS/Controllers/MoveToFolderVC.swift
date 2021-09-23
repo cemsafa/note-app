@@ -37,8 +37,6 @@ class MoveToFolderVC: UIViewController {
     
     // MARK: - Private mathods
     
-   
-    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
