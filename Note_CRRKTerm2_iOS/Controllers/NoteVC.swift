@@ -123,11 +123,12 @@ class NoteVC: UIViewController {
 // MARK: - CLLocationManagerDelegate
 
 extension NoteVC: CLLocationManagerDelegate {
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
+            selectedNote?.latitude = location.coordinate.latitude
+            selectedNote?.longitude = location.coordinate.longitude
         }
-        
     }
   
 }
