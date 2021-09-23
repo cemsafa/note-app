@@ -65,6 +65,7 @@ class NoteVC: UIViewController {
         delegate?.updateNote(with: navBar.title!, with: noteTV.text)
     }
     func setupLocationManager(){
+        //Setting location manager
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.requestWhenInUseAuthorization()
