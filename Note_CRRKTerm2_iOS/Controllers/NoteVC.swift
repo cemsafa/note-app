@@ -13,6 +13,7 @@ class NoteVC: UIViewController {
 
     @IBOutlet weak var noteTV: UITextView!
     @IBOutlet weak var navBar: UINavigationItem!
+    let locationManager = CLLocationManager()
     @IBOutlet weak var dateLbl: UILabel! {
         didSet {
             if selectedNote?.dateUpdated != nil {
@@ -31,7 +32,7 @@ class NoteVC: UIViewController {
     
     var editMode = false
     
-    let locationManager = CLLocationManager()
+    
     
     let image = NSTextAttachment()
     
