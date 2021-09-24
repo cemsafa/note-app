@@ -103,6 +103,9 @@ class NoteVC: UIViewController {
             if let destinationVC = segue.destination as? MapVC {
                 destinationVC.note = selectedNote
             }
+            if let destinationVC = segue.destination as? AudioVC {
+                // TODO: - Pass audio file string to player
+            }
         }
     }
     
@@ -151,9 +154,6 @@ class NoteVC: UIViewController {
         }
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(ac, animated: true, completion: nil)
-    }
-    
-    @IBAction func audioPressed(_ sender: UIBarButtonItem) {
     }
     
     // MARK: - Private methods
