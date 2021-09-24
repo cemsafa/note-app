@@ -32,11 +32,19 @@ class NoteVC: UIViewController {
     var selectedNote: Note? {
         didSet {
             editMode = true
+            dateCreated = selectedNote?.dateCreated
+            latitude = selectedNote?.latitude
+            longitude = selectedNote?.longitude
         }
     }
     
     var editMode = false
     
+    var latitude: CLLocationDegrees?
+    var longitude: CLLocationDegrees?
+    var dateCreated: Date?
+    
+    let locationManager = CLLocationManager()
     
     
     //let image = NSTextAttachment()
@@ -52,7 +60,7 @@ class NoteVC: UIViewController {
             let ac = UIAlertController(title: "New Note", message: "Please enter a title for your note", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { [self] action in
                 navBar.title = textField.text
-                selectedNote?.dateCreated = Date()
+                dateCreated = Date()
             }
             ac.addTextField { $0.placeholder = "New note title"; textField = $0 }
             ac.addAction(okAction)
@@ -61,12 +69,9 @@ class NoteVC: UIViewController {
 
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
         }
         setupUI()
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,13 +99,23 @@ class NoteVC: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        guard navBar.title != "" else { return }
+        delegate?.updateNote(title: navBar.title!, content: noteTV.text, dateCreated: dateCreated!, dateUpdated: Date(), latitude: latitude ?? 0, longitude: longitude ?? 0)
     }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? MapVC {
-            destinationVC.note = selectedNote
+        if editMode == false {
+            let ac = UIAlertController(title: "Warning", message: "Note must be saved first to see where it was taken", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in
+                self.dismiss(animated: true, completion: nil)
+            }))
+            present(ac, animated: true)
+        } else {
+            if let destinationVC = segue.destination as? MapVC {
+                destinationVC.note = selectedNote
+            }
         }
     }
     
@@ -182,9 +197,6 @@ class NoteVC: UIViewController {
     @IBAction func audioPressed(_ sender: UIBarButtonItem) {
     }
     
-    @IBAction func mapPressed(_ sender: UIBarButtonItem) {
-    }
-    
     // MARK: - Private methods
     
     private func setDate(with date: Date) -> String {
@@ -199,15 +211,32 @@ class NoteVC: UIViewController {
 // MARK: - CLLocationManagerDelegate
 
 extension NoteVC: CLLocationManagerDelegate {
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            selectedNote?.latitude = location.coordinate.latitude
-            selectedNote?.longitude = location.coordinate.longitude
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .notDetermined, .denied, .restricted:
+            manager.requestWhenInUseAuthorization()
+        case .authorizedAlways, .authorizedWhenInUse:
+            manager.requestLocation()
+        default:
+            break
         }
     }
-  
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        if editMode == false {
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
+        }
 }
+
+  // MARK: -UIImagePickerControllerDelegate, UINavigationControllerDelegate
+
 extension NoteVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         noteImg.isHidden = false
@@ -225,6 +254,7 @@ extension NoteVC : UIImagePickerControllerDelegate, UINavigationControllerDelega
 
         picker.dismiss(animated: true, completion: nil)
     }
+  
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
