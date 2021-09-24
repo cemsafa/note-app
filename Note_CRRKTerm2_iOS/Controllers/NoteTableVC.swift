@@ -177,7 +177,7 @@ class NoteTableVC: UITableViewController {
     
     // MARK: - Public methods
     
-    func updateNote(title: String, content: String, dateCreated: Date, dateUpdated: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    func updateNote(title: String, content: String, dateCreated: Date, dateUpdated: Date, latitude: CLLocationDegrees, longitude: CLLocationDegrees, photo: Data? = nil) {
         notes = []
         let newNote = Note(context: context)
         newNote.title = title
@@ -186,6 +186,7 @@ class NoteTableVC: UITableViewController {
         newNote.noteContent = content
         newNote.latitude = latitude
         newNote.longitude = longitude
+        newNote.photo = photo
         newNote.parentFolder = selectedFolder
         saveNotes()
         loadNotes()
