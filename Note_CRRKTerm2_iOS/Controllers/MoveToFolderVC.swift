@@ -24,9 +24,6 @@ class MoveToFolderVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.delegate = self
-        tableView.dataSource = self
     }
     
     // MARK: - IBAction
@@ -38,6 +35,7 @@ class MoveToFolderVC: UIViewController {
     // MARK: - Private mathods
     
     private func loadFolders() {
+        //Fetching all folders except the one
         let request: NSFetchRequest<Folder> = Folder.fetchRequest()
         let predicate = NSPredicate(format: "NOT name MATCHES %@", selectedNotes?.first?.parentFolder?.name ?? "")
         request.predicate = predicate
@@ -47,7 +45,6 @@ class MoveToFolderVC: UIViewController {
             print(error.localizedDescription)
         }
     }
-    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -76,6 +73,5 @@ extension MoveToFolderVC: UITableViewDelegate, UITableViewDataSource {
         alert.addAction(yesAction)
         alert.addAction(noAction)
         present(alert, animated: true, completion: nil)
-
     }
 }

@@ -19,7 +19,6 @@ class MapVC: UIViewController {
         super.viewDidLoad()
 
         if note != nil {
-//            zoomToLocation(with: CLLocationCoordinate2D(latitude: note!.latitude, longitude: note!.longitude))
             displayLocation(latitude: note!.latitude, longitude: note!.longitude, title: note!.title!, subtitle: "Note saved here")
         }
     }
