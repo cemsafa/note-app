@@ -11,10 +11,7 @@ import CoreData
 enum Sorting:String {
     case title = "title"
     case titleReverse = "titleReverse"
-//    case dateCreated = "dateCreated"
-//    case dateCreatedReverse = "dateCreatedReverse"
-//    case dateUpdated = "dateUpdated"
-//    case dateUpdatedReverse = "dateUpdatedReverse"
+
 }
 class NoteTableVC: UITableViewController {
 
@@ -231,10 +228,15 @@ extension NoteTableVC: UISearchBarDelegate {
         }
         else{
             //Searching note by keyword which user has entered
-            let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!) //Predicate which will match search keyword with title of notes
-            let contentPredicate = NSPredicate(format: "noteContent CONTAINS[cd] %@", searchBar.text!)//Predicate which will match search keyword with description of notes
+            //Predicate which will match search keyword with title of notes
+            let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+            
+            //Predicate which will match search keyword with description of notes
+            let contentPredicate = NSPredicate(format: "noteContent CONTAINS[cd] %@", searchBar.text!)
+            
+            // Calling function to filter the notes according to predicates
             let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
-            loadNotes(with: predicate) // Calling function to filter the notes according to predicates
+            loadNotes(with: predicate)
         }
        
     }
