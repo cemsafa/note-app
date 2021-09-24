@@ -8,6 +8,11 @@
 import UIKit
 import CoreData
 
+enum Sorting:String {
+    case title = "title"
+    case titleReverse = "titleReverse"
+
+}
 class NoteTableVC: UITableViewController {
 
     @IBOutlet weak var deleteBtn: UIBarButtonItem!
@@ -103,12 +108,13 @@ class NoteTableVC: UITableViewController {
     }
     
     @IBAction func sortBtnPressed(_ sender: UIBarButtonItem) {
+        //Showing Sorting options in actionsheet
         let ac = UIAlertController(title: "Change sort type", message: "", preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Sort by title (ascending)", style: .default) { [self] action in
-            loadNotes(sortBy: "title", isAsc: true)
+            sortNotes(for: .title)
         })
         ac.addAction(UIAlertAction(title: "Sort by title (descending)", style: .default) { [self] action in
-            loadNotes(sortBy: "title", isAsc: false)
+            sortNotes(for: .titleReverse)
         })
         ac.addAction(UIAlertAction(title: "Sort by created date (ascending)", style: .default) { [self] action in
             loadNotes(sortBy: "dateCreated", isAsc: true)
@@ -128,6 +134,17 @@ class NoteTableVC: UITableViewController {
     
     // MARK: - Private methods
     
+    // This function can sort notes in acc or desc order of its title
+    private func sortNotes(for type : Sorting){
+        switch type {
+        case .title:
+            notes.sort {$0.title! < $1.title!}
+        case .titleReverse:
+            notes.sort {$0.title! > $1.title!}
+        }
+        tableView.reloadData()
+    }
+    
     private func loadNotes(with predicate: NSPredicate? = nil, sortBy: String? = nil, isAsc: Bool? = nil) {
         let request: NSFetchRequest<Note> = Note.fetchRequest()
         let folderPredicate = NSPredicate(format: "parentFolder.name=%@", selectedFolder!.name!)
@@ -137,7 +154,6 @@ class NoteTableVC: UITableViewController {
         } else {
             request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         }
-        
         if let additionalPredicate = predicate {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [folderPredicate, additionalPredicate])
         } else {
@@ -169,6 +185,7 @@ class NoteTableVC: UITableViewController {
     }
     
     private func showSearchBar() {
+        //Setting a searchbar
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search notes"
@@ -197,23 +214,31 @@ class NoteTableVC: UITableViewController {
 // MARK: - UISearchBarDelegate
 
 extension NoteTableVC: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-        let contentPredicate = NSPredicate(format: "noteContent CONTAINS[cd] %@", searchBar.text!)
-        let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
-        loadNotes(with: predicate)
-    }
-    
+//Searchbar delegate methods
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         loadNotes()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //If there is no text in searchbar,We reload all the notes
         if searchBar.text?.count == 0 {
             loadNotes()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
         }
+        else{
+            //Searching note by keyword which user has entered
+            //Predicate which will match search keyword with title of notes
+            let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+            
+            //Predicate which will match search keyword with description of notes
+            let contentPredicate = NSPredicate(format: "noteContent CONTAINS[cd] %@", searchBar.text!)
+            
+            // Calling function to filter the notes according to predicates
+            let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [titlePredicate, contentPredicate])
+            loadNotes(with: predicate)
+        }
+       
     }
 }
