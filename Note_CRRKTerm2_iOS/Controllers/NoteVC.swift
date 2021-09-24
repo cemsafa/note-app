@@ -13,12 +13,6 @@ class NoteVC: UIViewController {
 
     @IBOutlet weak var noteTV: UITextView!
     @IBOutlet weak var navBar: UINavigationItem!
-
-    @IBOutlet weak var noteImg: UIImageView!
-    var selectedImage : Data?
-
-    let locationManager = CLLocationManager()
-
     @IBOutlet weak var dateLbl: UILabel! {
         didSet {
             if selectedNote?.dateUpdated != nil {
@@ -51,7 +45,6 @@ class NoteVC: UIViewController {
     var selectedImage: UIImage?
     
     let locationManager = CLLocationManager()
-
     let textAttachment = NSTextAttachment()
     let picker = UIImagePickerController()
     
@@ -75,7 +68,6 @@ class NoteVC: UIViewController {
             ac.addAction(okAction)
             present(ac, animated: true)
         }
-
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -86,28 +78,8 @@ class NoteVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if let _ = selectedNote{
-            selectedNote?.photo = selectedImage
-            try! delegate?.context.save()
-        }
-        else{
-            guard navBar.title != "" else { return }
-            if let delegate = delegate{
-//                let newNote = Note(context: delegate.context)
-//                newNote.photo = selectedImage
-//                newNote.title = title
-                delegate.updateNote(with: navBar.title!, with: noteTV.text)
-            }
-        }
-        
-    }
-    func setupLocationManager(){
-        //Setting location manager
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+        if editMode {
+            delegate?.deleteNote(selectedNote!)
         }
         guard navBar.title != "" else { return }
         if selectedImage != nil {
@@ -116,6 +88,7 @@ class NoteVC: UIViewController {
         delegate?.updateNote(title: navBar.title!, content: noteTV.text, dateCreated: dateCreated!, dateUpdated: Date(), latitude: latitude ?? 0, longitude: longitude ?? 0, photo: noteImage)
         
     }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -229,32 +202,8 @@ extension NoteVC: CLLocationManagerDelegate {
             latitude = location.coordinate.latitude
             longitude = location.coordinate.longitude
         }
-}
-
-  // MARK: -UIImagePickerControllerDelegate, UINavigationControllerDelegate
-
-extension NoteVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        noteImg.isHidden = false
-
-        if let image = info[.editedImage] as? UIImage {
-            noteImg.image = image
-        }
-        else if let image = info[.originalImage] as? UIImage {
-            noteImg.image = image
-        } else {
-            print("Other source")
-        }
-        //converted image into data so, we can store in coredata
-        selectedImage = noteImg.image!.jpegData(compressionQuality: 0.75)
-
-        picker.dismiss(animated: true, completion: nil)
+        
     }
-  
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
