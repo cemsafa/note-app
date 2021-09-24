@@ -248,6 +248,7 @@
                         <barButtonItem image="record.circle" catalog="system" id="hGq-1s-zto">
                             <connections>
                                 <action selector="audioPressed:" destination="xJ8-IV-ZwH" id="wAz-89-Vgm"/>
+                                <segue destination="ceg-Mw-xdw" kind="presentation" id="vyd-SA-I43"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="k8I-7o-C3l"/>
@@ -339,6 +340,86 @@
             </objects>
             <point key="canvasLocation" x="-117.39130434782609" y="51.5625"/>
         </scene>
+        <!--AudioVC-->
+        <scene sceneID="C8g-2n-WmV">
+            <objects>
+                <viewController id="ceg-Mw-xdw" customClass="AudioVC" customModule="Note_CRRKTerm2_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="p2x-wq-jjY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PkL-om-Yr0">
+                                <rect key="frame" x="182" y="758" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="L98-2F-CXH"/>
+                                    <constraint firstAttribute="width" constant="50" id="Y02-0V-qL2"/>
+                                </constraints>
+                                <state key="normal" image="recordBtn"/>
+                                <connections>
+                                    <action selector="recPlayBtnPressed:" destination="ceg-Mw-xdw" eventType="touchUpInside" id="jFS-9t-Sr2"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DZU-as-eEv">
+                                <rect key="frame" x="10" y="402" width="394" height="38"/>
+                                <subviews>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OpJ-7s-Mng">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="4"/>
+                                    </progressView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="eZf-Qp-lpn">
+                                        <rect key="frame" x="0.0" y="16" width="394" height="22"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yq0-Hn-yKy">
+                                                <rect key="frame" x="0.0" y="0.0" width="176.5" height="22"/>
+                                                <state key="normal" image="play.fill" catalog="system"/>
+                                                <connections>
+                                                    <action selector="playBtnPressed:" destination="ceg-Mw-xdw" eventType="touchUpInside" id="HkH-0T-ZcT"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVi-AD-KTp">
+                                                <rect key="frame" x="217.5" y="0.0" width="176.5" height="22"/>
+                                                <state key="normal" image="trash" catalog="system"/>
+                                                <connections>
+                                                    <action selector="deleteBtnPressed:" destination="ceg-Mw-xdw" eventType="touchUpInside" id="pAY-nt-HD9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q7o-2p-q9Z">
+                                <rect key="frame" x="15" y="15" width="44" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="closeBtnPressed:" destination="ceg-Mw-xdw" eventType="touchUpInside" id="ApE-fN-nSt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KfL-RP-zWW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DZU-as-eEv" firstAttribute="centerX" secondItem="p2x-wq-jjY" secondAttribute="centerX" id="9fT-6w-R2a"/>
+                            <constraint firstItem="q7o-2p-q9Z" firstAttribute="top" secondItem="KfL-RP-zWW" secondAttribute="top" constant="15" id="EgI-mc-jQp"/>
+                            <constraint firstItem="DZU-as-eEv" firstAttribute="centerY" secondItem="p2x-wq-jjY" secondAttribute="centerY" id="GKa-1m-jSQ"/>
+                            <constraint firstItem="DZU-as-eEv" firstAttribute="leading" secondItem="KfL-RP-zWW" secondAttribute="leading" constant="10" id="eVq-6C-p7o"/>
+                            <constraint firstItem="PkL-om-Yr0" firstAttribute="centerX" secondItem="p2x-wq-jjY" secondAttribute="centerX" id="fJO-Vo-iC0"/>
+                            <constraint firstItem="KfL-RP-zWW" firstAttribute="trailing" secondItem="DZU-as-eEv" secondAttribute="trailing" constant="10" id="fTw-el-8y2"/>
+                            <constraint firstItem="PkL-om-Yr0" firstAttribute="bottom" secondItem="KfL-RP-zWW" secondAttribute="bottom" id="jeE-Cg-g9b"/>
+                            <constraint firstItem="q7o-2p-q9Z" firstAttribute="leading" secondItem="KfL-RP-zWW" secondAttribute="leading" constant="15" id="ryb-Tr-crb"/>
+                            <constraint firstItem="KfL-RP-zWW" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="q7o-2p-q9Z" secondAttribute="trailing" priority="250" constant="800" id="xbC-XL-YCD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="deleteBtn" destination="kVi-AD-KTp" id="0Xg-Q5-FyL"/>
+                        <outlet property="playBtn" destination="Yq0-Hn-yKy" id="E9b-op-Bnn"/>
+                        <outlet property="progressBar" destination="OpJ-7s-Mng" id="jnz-H6-AOB"/>
+                        <outlet property="recPlayBtn" destination="PkL-om-Yr0" id="Q2G-b1-383"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CK2-cT-EXy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2429" y="759"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="4Hn-t4-0L8"/>
@@ -351,7 +432,9 @@
         <image name="note" catalog="system" width="128" height="106"/>
         <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
         <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="play.fill" catalog="system" width="116" height="128"/>
         <image name="record.circle" catalog="system" width="128" height="121"/>
+        <image name="recordBtn" width="574" height="574"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <image name="tray.and.arrow.down" catalog="system" width="128" height="109"/>
         <systemColor name="labelColor">
