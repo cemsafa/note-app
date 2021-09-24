@@ -13,7 +13,12 @@ class NoteVC: UIViewController {
 
     @IBOutlet weak var noteTV: UITextView!
     @IBOutlet weak var navBar: UINavigationItem!
+
+    @IBOutlet weak var noteImg: UIImageView!
+    var selectedImage : Data?
+
     let locationManager = CLLocationManager()
+
     @IBOutlet weak var dateLbl: UILabel! {
         didSet {
             if selectedNote?.dateUpdated != nil {
@@ -34,7 +39,7 @@ class NoteVC: UIViewController {
     
     
     
-    let image = NSTextAttachment()
+    //let image = NSTextAttachment()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,16 +58,33 @@ class NoteVC: UIViewController {
             ac.addAction(okAction)
             present(ac, animated: true)
         }
-        setupLocationManager()
+
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        setupUI()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if editMode {
-            delegate?.deleteNote(selectedNote!)
+        if let _ = selectedNote{
+            selectedNote?.photo = selectedImage
+            try! delegate?.context.save()
         }
-        guard navBar.title != "" else { return }
-        delegate?.updateNote(with: navBar.title!, with: noteTV.text)
+        else{
+            guard navBar.title != "" else { return }
+            if let delegate = delegate{
+//                let newNote = Note(context: delegate.context)
+//                newNote.photo = selectedImage
+//                newNote.title = title
+                delegate.updateNote(with: navBar.title!, with: noteTV.text)
+            }
+        }
+        
     }
     func setupLocationManager(){
         //Setting location manager
@@ -102,6 +124,59 @@ class NoteVC: UIViewController {
     }
     
     @IBAction func photoPressed(_ sender: UIBarButtonItem) {
+        // create an actionSheet
+        let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        // Check for weither to show add image option or remove
+        if noteImg.isHidden == true{
+            // Add image options
+            let cameraAction: UIAlertAction = UIAlertAction(title: "Image From Camera", style: .default) { action -> Void in
+                self.handleCamera()
+            }
+            let mediaAction: UIAlertAction = UIAlertAction(title: "Image From Gallary", style: .default) { action -> Void in
+
+                self.handlePhotoLibrary()
+            }
+            actionSheetController.addAction(cameraAction)
+            actionSheetController.addAction(mediaAction)
+        }
+        else{
+            //Remove options
+            let removeAction = UIAlertAction(title: "Remove Image", style: .destructive, handler: { (action) in
+                self.noteImg.isHidden = true
+                self.noteImg.image = nil
+                self.selectedImage = nil
+            })
+            actionSheetController.addAction(removeAction)
+        }
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in }
+        actionSheetController.addAction(cancelAction)
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+    func handleCamera()
+    {
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            self.present(imagePicker, animated: true)
+        }
+        else{
+            print("Camera not available")
+        }
+    }
+    func setupUI() {
+        if let image = selectedNote?.photo{
+            noteImg.isHidden = false
+            noteImg.image = UIImage(data: image)
+        }
+    }
+    func handlePhotoLibrary()
+    {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true)
     }
     
     @IBAction func audioPressed(_ sender: UIBarButtonItem) {
@@ -132,4 +207,26 @@ extension NoteVC: CLLocationManagerDelegate {
         }
     }
   
+}
+extension NoteVC : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        noteImg.isHidden = false
+
+        if let image = info[.editedImage] as? UIImage {
+            noteImg.image = image
+        }
+        else if let image = info[.originalImage] as? UIImage {
+            noteImg.image = image
+        } else {
+            print("Other source")
+        }
+        //converted image into data so, we can store in coredata
+        selectedImage = noteImg.image!.jpegData(compressionQuality: 0.75)
+
+        picker.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
 }
