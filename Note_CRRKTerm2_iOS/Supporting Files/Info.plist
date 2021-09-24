@@ -70,5 +70,9 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app uses location to store where you take the notes.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app uses camera to take photos and save with the note.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app uses your photos to save with the note.</string>
 </dict>
 </plist>
