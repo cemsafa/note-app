@@ -13,6 +13,7 @@ class NoteVC: UIViewController {
 
     @IBOutlet weak var noteTV: UITextView!
     @IBOutlet weak var navBar: UINavigationItem!
+    let locationManager = CLLocationManager()
     @IBOutlet weak var dateLbl: UILabel! {
         didSet {
             if selectedNote?.dateUpdated != nil {
@@ -31,7 +32,7 @@ class NoteVC: UIViewController {
     
     var editMode = false
     
-    let locationManager = CLLocationManager()
+    
     
     let image = NSTextAttachment()
     
@@ -52,12 +53,7 @@ class NoteVC: UIViewController {
             ac.addAction(okAction)
             present(ac, animated: true)
         }
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
+        setupLocationManager()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,7 +64,15 @@ class NoteVC: UIViewController {
         guard navBar.title != "" else { return }
         delegate?.updateNote(with: navBar.title!, with: noteTV.text)
     }
-
+    func setupLocationManager(){
+        //Setting location manager
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -120,10 +124,12 @@ class NoteVC: UIViewController {
 // MARK: - CLLocationManagerDelegate
 
 extension NoteVC: CLLocationManagerDelegate {
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        selectedNote?.latitude = location.coordinate.latitude
-        selectedNote?.longitude = location.coordinate.longitude
+        if let location = locations.last {
+            selectedNote?.latitude = location.coordinate.latitude
+            selectedNote?.longitude = location.coordinate.longitude
+        }
     }
+  
 }
